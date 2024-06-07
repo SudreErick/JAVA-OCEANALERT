@@ -2,17 +2,17 @@ import javax.swing.*;
 import java.time.LocalDate;
 
 public class AnaliseComunidade {
+
     private TipoAnalise analise;
     private String nomePessoa;
-    private String regiao;
+    private Regiao regiao;
     private LocalDate dataOcorrencia;
     private String descricao;
 
-    public AnaliseComunidade(){
-
+    public AnaliseComunidade() {
     }
 
-    public AnaliseComunidade(TipoAnalise analise, String nomePessoa, String regiao, LocalDate dataOcorrencia, String descricao) {
+    public AnaliseComunidade(TipoAnalise analise, String nomePessoa, Regiao regiao, LocalDate dataOcorrencia, String descricao) {
         this.analise = analise;
         this.nomePessoa = nomePessoa;
         this.regiao = regiao;
@@ -33,27 +33,21 @@ public class AnaliseComunidade {
     }
 
     public boolean setNomePessoa(String nomePessoa) {
-        if (nomePessoa.equalsIgnoreCase("")){
+        if (nomePessoa.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "ERRO! Digite o seu nome: ");
             return false;
-        }else{
+        } else {
             this.nomePessoa = nomePessoa;
             return true;
         }
     }
 
-    public String getRegiao() {
+    public Regiao getRegiao() {
         return regiao;
     }
 
-    public boolean setRegiao(String regiao) {
-        if (nomePessoa.equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "ERRO! Digite qual a região de análise: ");
-            return false;
-        }else{
-            this.regiao = regiao;
-            return true;
-        }
+    public void setRegiao(Regiao regiao) {
+        this.regiao = regiao;
     }
 
     public LocalDate getDataOcorrencia() {
@@ -69,12 +63,17 @@ public class AnaliseComunidade {
     }
 
     public boolean setDescricao(String descricao) {
-        if (nomePessoa.equalsIgnoreCase("")){
+        if (descricao.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "ERRO! Digite a descrição da análise feita: ");
             return false;
-        }else{
+        } else {
             this.descricao = descricao;
             return true;
         }
+    }
+
+    public void RegristarAnalise() {
+        JOptionPane.showMessageDialog(null, "Analise feita por: " + getNomePessoa() + "\nRegião Analisada: " + getRegiao()
+                + "\nDescrição da ocorrência: " + getDescricao() + "\nData Ocorrência: " + getDataOcorrencia());
     }
 }

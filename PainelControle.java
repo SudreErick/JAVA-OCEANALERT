@@ -1,13 +1,14 @@
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class PainelControle {
+
     public static void main(String[] args) {
         // VARIÁVEIS DE INTERAÇÃO
         String aux, escolha = "sim", acessoConcedido;
         int opcao;
-
 
         //VARIÁVEIS PROFISSIONAL
         TipoAnalise analise;
@@ -19,7 +20,7 @@ public class PainelControle {
         //VARIAVEIS ANALISE_COMUNIDADE
         TipoAnalise analiseComunidade;
         String nomePessoa;
-        String regiao;
+        Regiao regiao;
         LocalDate dataOcorrencia;
         String descricao;
 
@@ -45,88 +46,152 @@ public class PainelControle {
         // INTERAÇÃO COM USUÁRIO (JOPOTIONPANE):
 
         try {
-            JOptionPane.showMessageDialog(null, "BEM VINDO AO PAINEL DE CONTROLE OCEAN ALERT!");
-            analise = getAnalise();
-            switch (analise) {
-                case PROFISSIONAL -> {
-                    //REGISTRO PROFISSIONAL
-                    Profissional profissional = new Profissional();
-                    profissional.setAnalise(TipoAnalise.PROFISSIONAL);
 
-                    nomeProfissional = JOptionPane.showInputDialog("Informe o seu nome: ");
-                    profissional.setNome(nomeProfissional);
+            do {
 
-                    especialidade = getEspecialidadeProfissional();
-                    profissional.setEspecialidade(especialidade);
+                JOptionPane.showMessageDialog(null, "BEM VINDO AO PAINEL DE CONTROLE OCEAN ALERT!");
+                analise = getAnalise();
+                switch (analise) {
+                    case PROFISSIONAL -> {
+                        //REGISTRO PROFISSIONAL
+                        Profissional profissional = new Profissional();
+                        profissional.setAnalise(TipoAnalise.PROFISSIONAL);
 
-                    identificador = JOptionPane.showInputDialog("Digite o seu código identificador de profissional: ");
-                    profissional.setIdentificador(identificador);
+                        nomeProfissional = JOptionPane.showInputDialog("Informe o seu nome: ");
+                        profissional.setNome(nomeProfissional);
 
-                    senha = JOptionPane.showInputDialog("Digite a sua senha: ");
-                    profissional.setSenha(senha);
+                        especialidade = getEspecialidadeProfissional();
+                        profissional.setEspecialidade(especialidade);
 
+                        getIdentificador(profissional);
 
-                    JOptionPane.showMessageDialog(null, "Olá " + nomeProfissional + " BEM-VINDO AO SISTEMA OCEAN ALERT!");
+                        getSenha(profissional);
 
-                    //REGISTRO ANALISE PROFISSIONAL
-                    JOptionPane.showMessageDialog(null, "BEM-VINDO AO PAINEL DE CONTROLE! " + "\nFaça o registro das 14 informações marítimas coletadas pelos sensores.");
-                    LeituraSensor leitura = new LeituraSensor();
+                        JOptionPane.showMessageDialog(null, "Olá " + nomeProfissional + " BEM-VINDO AO SISTEMA OCEAN ALERT!");
 
-                    momentoLeitura = getMomentoLeitura();
+                        //REGISTRO ANALISE PROFISSIONAL
+                        JOptionPane.showMessageDialog(null, "BEM-VINDO AO PAINEL DE CONTROLE! " + "\nFaça o registro das 14 informações marítimas coletadas pelos sensores.");
+                        LeituraSensor leitura = new LeituraSensor();
 
-                    leitura.setMomentoLeitura(momentoLeitura);
+                        momentoLeitura = getMomento();
+                        leitura.setMomentoLeitura(momentoLeitura);
 
+                        //INICIANDO RELATÓRIO
 
-                    //INICIANDO RELATÓRIO
+                        getLatitude(leitura);
 
-                    getLatitude(leitura);
+                        getLongitude(leitura);
 
-                    getLongitude(leitura);
+                        getProfundidade(leitura);
 
-                    getProfundidade(leitura);
+                        getDirecaoDaCorrente(leitura);
 
-                    getDirecaoDaCorrente(leitura);
+                        getTemperatura(leitura);
 
-                    getTemperatura(leitura);
+                        getNivelDeSal(leitura);
 
-                    getNivelDeSal(leitura);
+                        getNivelOxigenio(leitura);
 
-                    getNivelOxigenio(leitura);
+                        getNivelPlasticos(leitura);
 
-                    getNivelPlasticos(leitura);
+                        getNivelQuimicos(leitura);
 
-                    getNivelQuimicos(leitura);
+                        getNivelPh(leitura);
 
-                    getNivelPh(leitura);
+                        getNivelTurbidez(leitura);
 
-                    getNivelTurbidez(leitura);
+                        getNivelNutrientes(leitura);
 
-                    getNivelNutrientes(leitura);
+                        getVelocidadeCorrente(leitura);
 
-                    getVelocidadeCorrente(leitura);
+                        getPresencaFitoplancton(leitura);
 
-                    getPresencaFitoplancton(leitura);
+                        getPresencaZooplancton(leitura);
 
-                    getPresencaZooplancton(leitura);
+                        getPresencaMetaisPesados(leitura);
 
-                    getPresencaMetaisPesados(leitura);
+                        JOptionPane.showMessageDialog(null, "ANALISE ENCERRADA, O SOFTWARE IRÁ GERAR UM RELATÓRIO DE TODAS AS INFORMAÇÕES A SEGUIR.");
+                        leitura.GerarRelatorioJOP();
+                        JOptionPane.showMessageDialog(null, "Análise registrada por: " + profissional.getNome() + " Especialidade: " + profissional.getEspecialidade());
+                        leitura.GerarRelatorioTerminal();
+                    }
+                    case COMUNITARIA -> {
+                        AnaliseComunidade comunidade = new AnaliseComunidade();
 
-                    JOptionPane.showMessageDialog(null, "ANALISE ENCERRADA, O SOFTWARE IRÁ GERAR UM RELATÓRIO DE TODAS AS INFORMAÇÕES A SEGUIR.");
-                    leitura.GerarRelatorioJOP();
-                    JOptionPane.showMessageDialog(null, "Análise registrada por: " + profissional.getNome() + " Especialidade: " + profissional.getEspecialidade());
-                    leitura.GerarRelatorioTerminal();
+                        getNomePessoa(comunidade);
+
+                        getRegiao(comunidade);
+
+                        getDescricao(comunidade);
+
+                        //Utilizando método de SOBRECARGA - MOMENTO
+                        dataOcorrencia = LocalDate.from(getMomento(LocalDateTime.now()));
+
+                        comunidade.setDataOcorrencia(dataOcorrencia);
+
+                        JOptionPane.showMessageDialog(null, "Análise registrada, Obrigado pela cooperação!" +
+                                "\nVamos Juntos, por um futuro mais sustentável!");
+                        comunidade.RegristarAnalise();
+                    }
                 }
-                case COMUNITARIA -> {
-
-
-                }
-            }
-            escolha = JOptionPane.showInputDialog("Deseja continuar? ");
+                escolha = JOptionPane.showInputDialog("Deseja continuar? \r\n[SIM] CONTINUAR \r\n[ENTER] SAIR ");
+            } while (escolha.equalsIgnoreCase("sim"));
         } catch (Exception e) {
             System.out.println("REGISTRO INVÁLIDO");
         }
         JOptionPane.showMessageDialog(null, "FIM de programa. Volte sempre!");
 
+    }
+
+    private static void getSenha(Profissional profissional) {
+        String senha;
+        boolean valido = false;
+        do {
+            senha = JOptionPane.showInputDialog("Digite a sua senha: ");
+            valido = profissional.setSenha(senha);
+        }while(valido == false);
+    }
+
+    private static void getIdentificador(Profissional profissional) {
+        String identificador;
+        boolean valido = false;
+        do {
+            identificador = JOptionPane.showInputDialog("Digite o seu código identificador de profissional: ");
+            valido = profissional.setIdentificador(identificador);
+        }while(valido == false);
+    }
+
+    private static void getNomePessoa(AnaliseComunidade comunidade) {
+        String nomePessoa;
+        boolean valido = false;
+        do {
+            nomePessoa = JOptionPane.showInputDialog("Informe o seu nome: ");
+            valido = comunidade.setNomePessoa(nomePessoa);
+        } while (valido == false);
+    }
+
+    private static void getDescricao(AnaliseComunidade comunidade) {
+        String descricao;
+        boolean valido = false;
+        do {
+            descricao = JOptionPane.showInputDialog("Descreva a ocorrência: ");
+            valido = comunidade.setDescricao(descricao);
+        } while (valido == false);
+    }
+
+    //MENU DE OPÇÕES REGIOES DO BRASIL (ANALISE COMUNITARIA)
+
+    private static void getRegiao(AnaliseComunidade comunidade) {
+        Regiao regiao;
+        regiao = (Regiao) JOptionPane.showInputDialog(
+                null, // componente pai. Como não temos será null
+                "Informe a Região de Análise: ",
+                "Região",
+                JOptionPane.QUESTION_MESSAGE,
+                null, // icone
+                Regiao.values(), // Número da opção
+                Regiao.COSTA_NORTE);
+        comunidade.setRegiao(regiao);
     }
 
     private static void getLongitude(LeituraSensor leitura) {
@@ -135,7 +200,7 @@ public class PainelControle {
         do {
             longitude = Double.parseDouble(JOptionPane.showInputDialog("Informe a longitude da região marítima registrada pelo sensor: (FAIXAS ACEITÁVEIS: 1 - 10000000) "));
             valido = leitura.setLatitude(longitude);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getLatitude(LeituraSensor leitura) {
@@ -144,34 +209,34 @@ public class PainelControle {
         do {
             latitude = Double.parseDouble(JOptionPane.showInputDialog("Informe a latitude da região marítima registrada pelo sensor: (FAIXAS ACEITÁVEIS: 1 - 10000000)"));
             valido = leitura.setLatitude(latitude);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getPresencaMetaisPesados(LeituraSensor leitura) {
         String presencaMetaisPesados;
         boolean valido = false;
         do {
-            presencaMetaisPesados = JOptionPane.showInputDialog("Há presença de Metais Pesados na Região analisada?: ");
+            presencaMetaisPesados = JOptionPane.showInputDialog("Há presença de Metais Pesados na Região analisada?: "+"\n[SIM] [NAO]");
             valido = leitura.setPresencaMetaisPesados(presencaMetaisPesados);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getPresencaZooplancton(LeituraSensor leitura) {
         String presencaZooplancton;
         boolean valido = false;
         do {
-            presencaZooplancton = JOptionPane.showInputDialog("Há presença de Zooplanctons na Região analisada?: ");
+            presencaZooplancton = JOptionPane.showInputDialog("Há presença de Zooplanctons na Região analisada?:" + "\n[SIM] [NAO]");
             valido = leitura.setPresencaZooplancton(presencaZooplancton);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getPresencaFitoplancton(LeituraSensor leitura) {
         String presencaFitoplancton;
         boolean valido = false;
         do {
-            presencaFitoplancton = JOptionPane.showInputDialog("Há presença de Fitoplanctons na Região analisada?: ");
+            presencaFitoplancton = JOptionPane.showInputDialog("Há presença de Fitoplanctons na Região analisada?: "+"\n[SIM] [NAO]");
             valido = leitura.setPresencaFitoplancton(presencaFitoplancton);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getVelocidadeCorrente(LeituraSensor leitura) {
@@ -180,7 +245,7 @@ public class PainelControle {
         do {
             velocidadeCorrente = Double.parseDouble(JOptionPane.showInputDialog("Informe a Velocidade da Corrente marítima registrada pelo sensor: (FAIXAS ACEITÁVEIS: 0 ms - 200 ms)"));
             valido = leitura.setVelocidadeCorrente(velocidadeCorrente);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelNutrientes(LeituraSensor leitura) {
@@ -189,7 +254,7 @@ public class PainelControle {
         do {
             nivelNutrientes = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de Nutrientes registrado pelo sensor: (FAIXAS ACEITÁVEIS: 0.5ppm - 5ppm)"));
             valido = leitura.setNivelNutrientes(nivelNutrientes);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelTurbidez(LeituraSensor leitura) {
@@ -198,7 +263,7 @@ public class PainelControle {
         do {
             nivelTurbidez = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de Turbidez registrado pelo sensor: (FAIXAS ACEITÁVEIS: 0 NTU - 10 NTU)"));
             valido = leitura.setNivelTurbidez(nivelTurbidez);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelPh(LeituraSensor leitura) {
@@ -207,7 +272,7 @@ public class PainelControle {
         do {
             nivelPH = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de PH registrado pelo sensor: (FAIXAS ACEITÁVEIS: 7.2 - 8.6)"));
             valido = leitura.setNivelPH(nivelPH);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelQuimicos(LeituraSensor leitura) {
@@ -216,7 +281,7 @@ public class PainelControle {
         do {
             nivelQuimicos = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de substâncias químicas registradas pelo sensor: (FAIXAS ACEITÁVEIS: 2ppm - 20ppm)"));
             valido = leitura.setNivelQuimicos(nivelQuimicos);
-        }while(valido = false);
+        } while (valido = false);
     }
 
     private static void getNivelPlasticos(LeituraSensor leitura) {
@@ -225,7 +290,7 @@ public class PainelControle {
         do {
             nivelPlasticos = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de Plásticos registrado pelo sensor: (FAIXAS ACEITÁVEIS: 5ppm - 50ppm)"));
             valido = leitura.setNivelPlasticos(nivelPlasticos);
-        }while (valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelOxigenio(LeituraSensor leitura) {
@@ -234,7 +299,7 @@ public class PainelControle {
         do {
             nivelOxigenio = Double.parseDouble(JOptionPane.showInputDialog("Informe o nível de Oxigênio registrado pelo sensor: (FAIXAS ACEITÁVEIS: 5 mg/L - 15 mg/L)"));
             valido = leitura.setNivelOxigenio(nivelOxigenio);
-        }while(valido == false);
+        } while (valido == false);
     }
 
     private static void getNivelDeSal(LeituraSensor leitura) {
@@ -278,6 +343,7 @@ public class PainelControle {
         } while (valido == false);
     }
 
+    //MENU DE OPÇÕES TIPO DE ESPECIALIDADE DO PROFISSIONAL
     private static EspecialidadeProfissional getEspecialidadeProfissional() {
         EspecialidadeProfissional especialidade;
         especialidade = (EspecialidadeProfissional) JOptionPane.showInputDialog(
@@ -290,6 +356,8 @@ public class PainelControle {
                 EspecialidadeProfissional.ENGENHEIRO_AMBIENTAL);
         return especialidade;
     }
+
+    //MENU DE OPÇÕES TIPO DE ANALISE (COMUNITARIA OU PROFISSIONAL)
 
     private static TipoAnalise getAnalise() {
         TipoAnalise analise;
@@ -304,7 +372,8 @@ public class PainelControle {
         return analise;
     }
 
-    private static LocalDateTime getMomentoLeitura() {
+    //SOBRECARGA DE METODOS
+    private static LocalDateTime getMomento() {
         LocalDateTime momentoLeitura;
         momentoLeitura = LocalDateTime.now();
         String mesLeitura = momentoLeitura.getMonthValue() > 9 ? "" + momentoLeitura.getMonthValue() : "0" + momentoLeitura.getMonthValue();
@@ -319,4 +388,23 @@ public class PainelControle {
         momentoLeitura = LocalDateTime.of(ano, mes, dia, hora, minuto);
         return momentoLeitura;
     }
+
+    //SOBRECARGA DE METODOS
+    private static LocalDateTime getMomento(LocalDateTime momentoLeitura) {
+        if (Objects.isNull(momentoLeitura))
+            momentoLeitura = LocalDateTime.now();
+        String mesLeitura = momentoLeitura.getMonthValue() > 9 ? "" + momentoLeitura.getMonthValue() : "0" + momentoLeitura.getMonthValue();
+        String diaLeitura = momentoLeitura.getDayOfMonth() > 9 ? "" + momentoLeitura.getDayOfMonth() : "0" + momentoLeitura.getDayOfMonth();
+        String dataLeitura = JOptionPane.showInputDialog("Qual a data da leitura no formato DD/MM/AAAA", diaLeitura + "/" + mesLeitura + "/" + momentoLeitura.getYear());
+        String horaLeitura = JOptionPane.showInputDialog("Qual a hora da leitura no formato HH:MM", momentoLeitura.getHour() + ":" + momentoLeitura.getMinute());
+        int ano = Integer.parseInt(dataLeitura.substring(6, 10));
+        int mes = Integer.parseInt(dataLeitura.substring(3, 5));
+        int dia = Integer.parseInt(dataLeitura.substring(0, 2));
+        int hora = Integer.parseInt(horaLeitura.substring(0, 2));
+        int minuto = Integer.parseInt(horaLeitura.substring(3, 5));
+        momentoLeitura = LocalDateTime.of(ano, mes, dia, hora, minuto);
+        return momentoLeitura;
+    }
+
+
 }

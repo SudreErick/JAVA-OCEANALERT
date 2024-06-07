@@ -1,14 +1,14 @@
 import javax.swing.*;
 
 public class Sensor {
+
     private String id;
     private double latitude;
     private double longitude;
     private double profundidade;
 
     //Construtor sem Passagem de Parâmetros
-    public Sensor(){
-
+    public Sensor() {
     }
 
     // Construtor com Passagem de Parâmetros
@@ -26,7 +26,7 @@ public class Sensor {
     }
 
     public boolean setId(String id) {
-        if (id.equalsIgnoreCase("")){
+        if (id.equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Sensor utilizado na coleta de informações: ");
             return false;
         } else {
@@ -43,7 +43,7 @@ public class Sensor {
         if (latitude >= 1 && latitude < 10000000) {
             this.latitude = latitude;
             return true;
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "ALERTA! : FORA DOS LIMITES (FAIXAS ACEITÁVEIS: 1 - 10000000)");
             return false;
         }
@@ -57,7 +57,7 @@ public class Sensor {
         if (latitude >= 1 && latitude <= 10000000) {
             this.longitude = longitude;
             return true;
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "ALERTA! : FORA DOS LIMITES (FAIXAS ACEITÁVEIS: 1 - 10000000)");
             return false;
         }
@@ -68,13 +68,21 @@ public class Sensor {
     }
 
     public boolean setProfundidade(double profundidade) {
-        if(profundidade > 0 && profundidade <= 300){
+        if (profundidade > 0 && profundidade <= 300) {
             this.profundidade = profundidade;
             return true;
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "ALERTA! : FORA DOS LIMITES (FAIXAS ACEITÁVEIS: 0 - 300)");
             return false;
         }
 
     }
+
+    public void GerarRelatorioTerminal(){
+        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Sensor: " + getId());
+    }
+    public void GerarRelatorioJOP(){
+        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Sensor: " + getId());
+    }
+
 }

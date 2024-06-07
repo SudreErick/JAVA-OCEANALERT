@@ -38,7 +38,7 @@ public class Profissional {
     }
 
     public boolean setNome(String nome) {
-        if (identificador.equalsIgnoreCase("")){
+        if (nome.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite o seu nome: ");
             return false;
         }else{
@@ -52,7 +52,7 @@ public class Profissional {
     }
 
     public boolean setSenha(String senha) {
-        if (identificador.equalsIgnoreCase("")){
+        if (senha.equals("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite a sua senha: ");
             return false;
         }else{

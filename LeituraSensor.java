@@ -200,7 +200,7 @@ public class LeituraSensor extends Sensor {
     }
 
     public boolean setVelocidadeCorrente(double velocidadeCorrente) {
-        if (velocidadeCorrente > 0 && velocidadeCorrente < 200) {
+        if (velocidadeCorrente >= 0 && velocidadeCorrente <= 200) {
             this.velocidadeCorrente = velocidadeCorrente;
             return true;
         } else {
@@ -225,8 +225,11 @@ public class LeituraSensor extends Sensor {
         this.momentoLeitura = momentoLeitura;
     }
 
-    public void GerarRelatorioTerminal(){
-        System.out.println("Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nDirecao Corrente: " + getDirecaoCorrente() + "\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Sensor: " + getId() + "\nMomento Leitura: " + getMomentoLeitura());
+
+    //SOBRESCRITA DE METODOS (CLASSE: SENSOR)
+
+    public void GerarRelatorioTerminal() {
+        System.out.println("Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nDirecao Corrente: " + getDirecaoCorrente() + "\nMomento Leitura: " + getMomentoLeitura());
     }
 
     public void GerarRelatorioJOP() {
@@ -234,19 +237,3 @@ public class LeituraSensor extends Sensor {
     }
 
 }
-
-//Alerta de Alta Salinidade
-//Alerta de Alta Temperatura da Água
-//Alerta de Baixa Salinidade
-//Alerta de Baixa Temperatura da Água
-//Alerta de Contaminação por Metais Pesados
-//Alerta de Contaminação por Plásticos
-//Alerta de Contaminação por Substâncias Químicas
-//Alerta de Níveis Elevados de Nutrientes
-//Alerta de Níveis Elevados de pH
-//Alerta de Níveis Elevados de Turbidez
-//Alerta de Níveis Reduzidos de Oxigênio Dissolvido
-//Alerta de Presença de Fitoplâncton Anormal
-//Alerta de Presença de Zooplâncton Anormal
-//Alerta de Variação Brusca na Correnteza
-//Alerta de Variação Brusca na Profundidade da Água
