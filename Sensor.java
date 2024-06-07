@@ -25,11 +25,13 @@ public class Sensor {
         return id;
     }
 
-    public void setId(String id) {
+    public boolean setId(String id) {
         if (id.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Sensor utilizado na coleta de informações: ");
+            return false;
         } else {
             this.id = id;
+            return true;
         }
     }
 

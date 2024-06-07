@@ -45,10 +45,8 @@ public class PainelControle {
         // INTERAÇÃO COM USUÁRIO (JOPOTIONPANE):
 
         try {
-
+            JOptionPane.showMessageDialog(null, "BEM VINDO AO PAINEL DE CONTROLE OCEAN ALERT!");
             analise = getAnalise();
-
-
             switch (analise) {
                 case PROFISSIONAL -> {
                     //REGISTRO PROFISSIONAL

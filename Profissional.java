@@ -23,11 +23,13 @@ public class Profissional {
         return identificador;
     }
 
-    public void setIdentificador(String identificador) {
+    public boolean setIdentificador(String identificador) {
         if (identificador.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Profissional: ");
+            return false;
         }else{
             this.identificador = identificador;
+            return true;
         }
     }
 
@@ -35,11 +37,13 @@ public class Profissional {
         return nome;
     }
 
-    public void setNome(String nome) {
+    public boolean setNome(String nome) {
         if (identificador.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite o seu nome: ");
+            return false;
         }else{
             this.nome = nome;
+            return true;
         }
     }
 
@@ -47,11 +51,13 @@ public class Profissional {
         return senha;
     }
 
-    public void setSenha(String senha) {
+    public boolean setSenha(String senha) {
         if (identificador.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite a sua senha: ");
+            return false;
         }else{
             this.senha = senha;
+            return true;
         }
     }
 

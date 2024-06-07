@@ -32,11 +32,13 @@ public class AnaliseComunidade {
         return nomePessoa;
     }
 
-    public void setNomePessoa(String nomePessoa) {
+    public boolean setNomePessoa(String nomePessoa) {
         if (nomePessoa.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite o seu nome: ");
+            return false;
         }else{
             this.nomePessoa = nomePessoa;
+            return true;
         }
     }
 
@@ -44,11 +46,13 @@ public class AnaliseComunidade {
         return regiao;
     }
 
-    public void setRegiao(String regiao) {
+    public boolean setRegiao(String regiao) {
         if (nomePessoa.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite qual a região de análise: ");
+            return false;
         }else{
             this.regiao = regiao;
+            return true;
         }
     }
 
@@ -64,11 +68,13 @@ public class AnaliseComunidade {
         return descricao;
     }
 
-    public void setDescricao(String descricao) {
+    public boolean setDescricao(String descricao) {
         if (nomePessoa.equalsIgnoreCase("")){
             JOptionPane.showMessageDialog(null, "ERRO! Digite a descrição da análise feita: ");
+            return false;
         }else{
             this.descricao = descricao;
+            return true;
         }
     }
 }
