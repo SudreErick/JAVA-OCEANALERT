@@ -1,3 +1,6 @@
+package Leituras;
+import ENUMS.TipoAnalise;
+import ENUMS.EspecialidadeProfissional;
 import javax.swing.*;
 
 public class Profissional {
@@ -25,7 +28,7 @@ public class Profissional {
 
     public boolean setIdentificador(String identificador) {
         if (identificador.equalsIgnoreCase("")){
-            JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Profissional: ");
+            JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Leituras.Profissional: ");
             return false;
         }else{
             this.identificador = identificador;

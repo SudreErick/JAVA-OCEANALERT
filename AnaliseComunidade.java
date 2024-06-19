@@ -1,3 +1,7 @@
+package Leituras;
+
+import ENUMS.Regiao;
+import ENUMS.TipoAnalise;
 import javax.swing.*;
 import java.time.LocalDate;
 
@@ -72,7 +76,7 @@ public class AnaliseComunidade {
         }
     }
 
-    public void RegristarAnalise() {
+    public void regristarAnalise() {
         JOptionPane.showMessageDialog(null, "Analise feita por: " + getNomePessoa() + "\nRegião Analisada: " + getRegiao()
                 + "\nDescrição da ocorrência: " + getDescricao() + "\nData Ocorrência: " + getDataOcorrencia());
     }

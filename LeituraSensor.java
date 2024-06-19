@@ -1,3 +1,6 @@
+package Leituras;
+
+import ENUMS.Direcao;
 import javax.swing.*;
 import java.time.LocalDateTime;
 
@@ -228,12 +231,12 @@ public class LeituraSensor extends Sensor {
 
     //SOBRESCRITA DE METODOS (CLASSE: SENSOR)
 
-    public void GerarRelatorioTerminal() {
-        System.out.println("Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nDirecao Corrente: " + getDirecaoCorrente() + "\nMomento Leitura: " + getMomentoLeitura());
+    public void gerarRelatorioTerminal() {
+        System.out.println("Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nENUMS.Direcao Corrente: " + getDirecaoCorrente() + "\nMomento Leitura: " + getMomentoLeitura());
     }
 
-    public void GerarRelatorioJOP() {
-        JOptionPane.showMessageDialog(null, "Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nDirecao Corrente: " + getDirecaoCorrente() + "\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nMomento Leitura: " + getMomentoLeitura());
+    public void gerarRelatorioJOP() {
+        JOptionPane.showMessageDialog(null, "Temperatura: " + getTemperatura() + "\nSalinidade: " + getSalinidade() + "\nNivel Oxigenio: " + getNivelOxigenio() + "\nNivel Plasticos: " + getNivelPlasticos() + "\nNivel Quimicos: " + getNivelQuimicos() + "\nNivel PH: " + getNivelPH() + "\nNivel Turbides: " + getNivelTurbidez() + "\nNivel Nutrientes: " + getNivelNutrientes() + "\nPresenca Fitoplancton: " + getPresencaFitoplancton() + "\nPresenca Zooplancton: " + getPresencaZooplancton() + "\nPresenca Metais Pesados: " + getPresencaMetaisPesados() + "\nVelocidade Corrente: " + getVelocidadeCorrente() + "\nENUMS.Direcao Corrente: " + getDirecaoCorrente() + "\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nMomento Leitura: " + getMomentoLeitura());
     }
 
 }

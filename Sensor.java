@@ -1,3 +1,5 @@
+package Leituras;
+
 import javax.swing.*;
 
 public class Sensor {
@@ -27,7 +29,7 @@ public class Sensor {
 
     public boolean setId(String id) {
         if (id.equalsIgnoreCase("")) {
-            JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Sensor utilizado na coleta de informações: ");
+            JOptionPane.showMessageDialog(null, "ERRO! Digite o Id do Leituras.Sensor utilizado na coleta de informações: ");
             return false;
         } else {
             this.id = id;
@@ -78,11 +80,11 @@ public class Sensor {
 
     }
 
-    public void GerarRelatorioTerminal(){
-        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Sensor: " + getId());
+    public void gerarRelatorioTerminal(){
+        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Leituras.Sensor: " + getId());
     }
-    public void GerarRelatorioJOP(){
-        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Sensor: " + getId());
+    public void gerarRelatorioJOP(){
+        System.out.println("\nLatitude: " + getLatitude() + "\nLongitude: " + getLongitude() + "\nProfundidade: " + getProfundidade() + "\nID-Leituras.Sensor: " + getId());
     }
 
 }

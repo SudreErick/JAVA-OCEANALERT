@@ -1,3 +1,10 @@
+import ENUMS.Direcao;
+import ENUMS.EspecialidadeProfissional;
+import ENUMS.Regiao;
+import ENUMS.TipoAnalise;
+import Leituras.AnaliseComunidade;
+import Leituras.LeituraSensor;
+import Leituras.Profissional;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -111,9 +118,9 @@ public class PainelControle {
                         getPresencaMetaisPesados(leitura);
 
                         JOptionPane.showMessageDialog(null, "ANALISE ENCERRADA, O SOFTWARE IRÁ GERAR UM RELATÓRIO DE TODAS AS INFORMAÇÕES A SEGUIR.");
-                        leitura.GerarRelatorioJOP();
+                        leitura.gerarRelatorioJOP();
                         JOptionPane.showMessageDialog(null, "Análise registrada por: " + profissional.getNome() + " Especialidade: " + profissional.getEspecialidade());
-                        leitura.GerarRelatorioTerminal();
+                        leitura.gerarRelatorioTerminal();
                     }
                     case COMUNITARIA -> {
                         AnaliseComunidade comunidade = new AnaliseComunidade();
@@ -131,7 +138,7 @@ public class PainelControle {
 
                         JOptionPane.showMessageDialog(null, "Análise registrada, Obrigado pela cooperação!" +
                                 "\nVamos Juntos, por um futuro mais sustentável!");
-                        comunidade.RegristarAnalise();
+                        comunidade.regristarAnalise();
                     }
                 }
                 escolha = JOptionPane.showInputDialog("Deseja continuar? \r\n[SIM] CONTINUAR \r\n[ENTER] SAIR ");
@@ -348,7 +355,7 @@ public class PainelControle {
         EspecialidadeProfissional especialidade;
         especialidade = (EspecialidadeProfissional) JOptionPane.showInputDialog(
                 null, // componente pai. Como não temos será null
-                "Selecione a sua Especialidade Profissional",
+                "Selecione a sua Especialidade Leituras.Profissional",
                 "Menu",
                 JOptionPane.QUESTION_MESSAGE,
                 null, // icone
@@ -405,6 +412,4 @@ public class PainelControle {
         momentoLeitura = LocalDateTime.of(ano, mes, dia, hora, minuto);
         return momentoLeitura;
     }
-
-
 }
